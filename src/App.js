@@ -14,6 +14,8 @@ import Header from "./components/header/Header";
 import SignupSignin from "./pages/signup-signin/signup-signin";
 import { auth, createUserProfileDocument } from "./firebase-utils";
 import { setCurrentUser } from "./reducers/userReducer/userActions";
+import { selectCurrentUser } from "./reducers/userReducer/userSelect";
+import Checkout from "./pages/checkout/Checkout";
 function App({ setCurrentUser, currentUser }) {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async userAuth => {
@@ -45,6 +47,8 @@ function App({ setCurrentUser, currentUser }) {
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route exact path="/shop" component={Shop} />
+          <Route exact path="/checkout" component={Checkout} />
+
           <Route path="/shop/hats" component={Hats} />
           <Route
             exact
@@ -58,8 +62,8 @@ function App({ setCurrentUser, currentUser }) {
     </div>
   );
 }
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser
+const mapStateToProps = (state) => ({
+  currentUser: selectCurrentUser(state)
 });
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
