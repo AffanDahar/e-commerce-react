@@ -2,13 +2,7 @@ import React, { useEffect } from "react";
 import "./App.css";
 import Homepage from "./pages/homepage/Homepage";
 import { connect } from "react-redux";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect
-} from "react-router-dom";
-import Hats from "./pages/Hats";
+import {BrowserRouter as Router,Switch,Route,Redirect} from "react-router-dom";
 import Shop from "./pages/shop/Shop";
 import Header from "./components/header/Header";
 import SignupSignin from "./pages/signup-signin/signup-signin";
@@ -29,10 +23,7 @@ function App({ setCurrentUser, currentUser }) {
             ...snapshot.data()
           });
         });
-        
-      }
-      
-      else {
+      } else {
         setCurrentUser(userAuth);
       }
     });
@@ -46,10 +37,8 @@ function App({ setCurrentUser, currentUser }) {
         <Header />
         <Switch>
           <Route exact path="/" component={Homepage} />
-          <Route exact path="/shop" component={Shop} />
+          <Route  path="/shop" component={Shop} />
           <Route exact path="/checkout" component={Checkout} />
-
-          <Route path="/shop/hats" component={Hats} />
           <Route
             exact
             path="/signin"
@@ -62,7 +51,7 @@ function App({ setCurrentUser, currentUser }) {
     </div>
   );
 }
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   currentUser: selectCurrentUser(state)
 });
 const mapDispatchToProps = dispatch => ({
