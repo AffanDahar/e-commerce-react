@@ -3,6 +3,7 @@ import './checkout.style.scss'
 import {connect} from 'react-redux'
 import CheckoutItems from '../../components/checkoutitem/CheckoutItems';
 import { selectCartItems, selectCartTotal } from '../../reducers/cart/cartSelector';
+import StripButton from '../../components/stripe/StripButton';
 
 
 const Checkout = ({cartItems , total}) => {
@@ -33,6 +34,7 @@ const Checkout = ({cartItems , total}) => {
           <div className='total'>
          {total}
           </div>
+          <StripButton price={total}/>
             
         </div>
     )
